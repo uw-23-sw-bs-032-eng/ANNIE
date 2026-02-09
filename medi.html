@@ -1,0 +1,3819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MediCare Center - Complete Healthcare Solution with advanced patient management system">
+    <meta name="keywords" content="hospital, healthcare, medical, doctors, appointment, patient portal">
+    <title>MediCare Center | Complete Healthcare Solution</title>
+    
+    <!-- External Resources -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- Internal CSS -->
+    <style>
+        /* ============================================
+           CSS VARIABLES & RESET
+           ============================================ */
+        :root {
+            /* Color Palette */
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #dbeafe;
+            --secondary: #10b981;
+            --secondary-dark: #059669;
+            --accent: #8b5cf6;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --success: #10b981;
+            --info: #3b82f6;
+            
+            /* Neutral Colors */
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --gray-light: #e5e7eb;
+            --gray-dark: #374151;
+            
+            /* Design Tokens */
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius: 12px;
+            --radius-lg: 20px;
+            --gradient-primary: linear-gradient(135deg, #2563eb, #3b82f6, #60a5fa);
+            --gradient-secondary: linear-gradient(135deg, #10b981, #34d399);
+            --gradient-dark: linear-gradient(135deg, #1e293b, #334155);
+            --gradient-warning: linear-gradient(135deg, #f59e0b, #fbbf24);
+            --gradient-danger: linear-gradient(135deg, #ef4444, #f87171);
+        }
+
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Utility Classes */
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 42px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 32px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 16px;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            outline: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: -100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::after {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--gradient-secondary);
+            color: white;
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-warning {
+            background: var(--gradient-warning);
+            color: white;
+            box-shadow: 0 10px 20px rgba(245, 158, 11, 0.2);
+        }
+
+        .btn-warning:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(245, 158, 11, 0.3);
+        }
+
+        /* Card Component */
+        .card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Grid System */
+        .grid {
+            display: grid;
+            gap: 30px;
+        }
+
+        .grid-2 { grid-template-columns: repeat(2, 1fr); }
+        .grid-3 { grid-template-columns: repeat(3, 1fr); }
+        .grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+        @keyframes slideOutRight {
+            from { transform: translateX(0); }
+            to { transform: translateX(100%); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* ============================================
+           TOP BAR
+           ============================================ */
+        .top-bar {
+            background: var(--gradient-dark);
+            color: white;
+            padding: 12px 0;
+            font-size: 14px;
+        }
+
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .emergency-contact {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .emergency-contact i {
+            color: #fecaca;
+            animation: pulse 2s infinite;
+        }
+
+        .top-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .top-links a {
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .top-links a:hover {
+            color: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        /* ============================================
+           HEADER & NAVIGATION
+           ============================================ */
+        .main-header {
+            background: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .main-header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        /* Logo */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 800;
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--dark);
+        }
+
+        .logo-text span {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Navigation */
+        .nav-links {
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            padding: 8px 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--primary);
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .menu-toggle:hover {
+            background: var(--light);
+        }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        .hero {
+            background: linear-gradient(rgba(30, 41, 59, 0.9), rgba(30, 41, 59, 0.95)),
+                        url('https://images.unsplash.com/photo-1516549655669-df6654e435de?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, rgba(37, 99, 235, 0) 70%);
+            top: -200px;
+            right: -200px;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0) 70%);
+            bottom: -150px;
+            left: -150px;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            margin-bottom: 25px;
+            line-height: 1.1;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        /* ============================================
+           SERVICES SECTION
+           ============================================ */
+        .services {
+            background: white;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            text-align: center;
+            padding: 40px 30px;
+            border-radius: var(--radius);
+            background: white;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--gray-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-primary);
+            transform: translateY(-100%);
+            transition: var(--transition);
+        }
+
+        .service-card:hover::before {
+            transform: translateY(0);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 32px;
+            transition: var(--transition);
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .service-card h3 {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .service-card p {
+            color: var(--gray);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        /* ============================================
+           MODAL STYLES
+           ============================================ */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 1000px;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: fadeInUp 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: flex;
+            position: relative;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+        }
+
+        .modal-left {
+            flex: 1;
+            background: var(--gradient-dark);
+            color: white;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-left::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+            top: -150px;
+            right: -150px;
+        }
+
+        .modal-left::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 70%);
+            bottom: -100px;
+            left: -100px;
+        }
+
+        .modal-right {
+            flex: 1.2;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: var(--gray);
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .close-modal:hover {
+            color: var(--danger);
+            transform: rotate(90deg);
+            background: var(--light);
+        }
+
+        /* ============================================
+           FORM STYLES
+           ============================================ */
+        .auth-tabs {
+            display: flex;
+            background: var(--light);
+            border-radius: 50px;
+            padding: 5px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--gray);
+            border-radius: 50px;
+            transition: var(--transition);
+            z-index: 1;
+            border: none;
+            background: transparent;
+            font-size: 16px;
+        }
+
+        .auth-tab.active {
+            color: white;
+        }
+
+        .auth-tab-slider {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: calc(50% - 5px);
+            height: calc(100% - 10px);
+            background: var(--gradient-primary);
+            border-radius: 50px;
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 14px;
+        }
+
+        .input-with-icon {
+            position: relative;
+        }
+
+        .input-with-icon i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+            z-index: 1;
+        }
+
+        .input-with-icon input,
+        .input-with-icon select,
+        .input-with-icon textarea {
+            width: 100%;
+            padding: 14px 14px 14px 45px;
+            border: 2px solid var(--gray-light);
+            border-radius: var(--radius);
+            font-size: 16px;
+            transition: var(--transition);
+            background: white;
+            font-family: inherit;
+        }
+
+        .input-with-icon input:focus,
+        .input-with-icon select:focus,
+        .input-with-icon textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .input-with-icon textarea {
+            min-height: 120px;
+            resize: vertical;
+            padding-left: 15px;
+        }
+
+        .input-with-icon textarea + i {
+            top: 20px;
+            transform: none;
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .checkbox-container input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .checkbox-container label {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .forgot-password {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .forgot-password:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        .auth-submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .auth-submit-btn:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+        }
+
+        .auth-submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .btn-loading {
+            position: relative;
+            color: transparent !important;
+        }
+
+        .btn-loading::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 50%;
+            left: 50%;
+            margin-left: -10px;
+            margin-top: -10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s linear infinite;
+        }
+
+        .btn-google {
+            background: white;
+            color: var(--dark);
+            border: 2px solid var(--gray-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+            width: 100%;
+            padding: 14px;
+            font-weight: 600;
+        }
+
+        .btn-google:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            color: var(--gray);
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--gray-light);
+        }
+
+        .divider span {
+            padding: 0 15px;
+            font-size: 14px;
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 20px;
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        .form-footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 5px;
+            transition: var(--transition);
+        }
+
+        .form-footer a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        /* Password Requirements */
+        .password-requirements {
+            background: var(--light);
+            padding: 12px;
+            border-radius: var(--radius);
+            margin-top: 10px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .password-requirements p {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--dark);
+            font-size: 14px;
+        }
+
+        .requirements-list {
+            list-style: none;
+            font-size: 13px;
+        }
+
+        .requirements-list li {
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition);
+        }
+
+        .requirements-list i {
+            font-size: 12px;
+            transition: var(--transition);
+        }
+
+        .requirement-met {
+            color: var(--success);
+        }
+
+        .requirement-met i {
+            color: var(--success);
+        }
+
+        .requirement-not-met {
+            color: var(--gray);
+        }
+
+        /* Validation Messages */
+        .validation-message {
+            font-size: 13px;
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: var(--transition);
+        }
+
+        .validation-message i {
+            font-size: 14px;
+        }
+
+        .valid {
+            color: var(--success);
+        }
+
+        .invalid {
+            color: var(--danger);
+        }
+
+        /* ============================================
+           FEATURES SECTION
+           ============================================ */
+        .features {
+            background: var(--light);
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 40px 30px;
+            border-radius: var(--radius);
+            background: white;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 25px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+            position: relative;
+            z-index: 1;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-card p {
+            color: var(--gray);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ============================================
+           DOCTORS SECTION
+           ============================================ */
+        .doctors {
+            background: white;
+        }
+
+        .doctors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .doctor-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .doctor-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .doctor-img {
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .doctor-img::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
+            z-index: 1;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .doctor-card:hover .doctor-img::before {
+            opacity: 1;
+        }
+
+        .doctor-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .doctor-card:hover .doctor-img img {
+            transform: scale(1.1);
+        }
+
+        .doctor-info {
+            padding: 25px;
+        }
+
+        .doctor-info h3 {
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .doctor-specialty {
+            color: var(--primary);
+            font-weight: 600;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .doctor-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 10px;
+            color: var(--warning);
+        }
+
+        .doctor-rating span {
+            color: var(--gray);
+            font-size: 14px;
+            margin-left: 5px;
+        }
+
+        .doctor-info p {
+            color: var(--gray);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* ============================================
+           APPOINTMENT SECTION
+           ============================================ */
+        .appointment {
+            background: var(--light);
+        }
+
+        .appointment-form {
+            background: white;
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .appointment-form:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .appointment-form h3 {
+            margin-bottom: 30px;
+            color: var(--dark);
+            font-size: 24px;
+        }
+
+        /* ============================================
+           TESTIMONIALS SECTION
+           ============================================ */
+        .testimonials {
+            background: white;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            padding: 40px 30px;
+            border-radius: var(--radius);
+            background: var(--light);
+            position: relative;
+            transition: var(--transition);
+            border: 1px solid var(--gray-light);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 60px;
+            color: var(--primary-light);
+            font-family: serif;
+            opacity: 0.3;
+            line-height: 1;
+        }
+
+        .testimonial-content {
+            font-style: italic;
+            color: var(--gray-dark);
+            margin-bottom: 25px;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 3px solid white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .author-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .author-info p {
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        /* ============================================
+           DEPARTMENTS SECTION
+           ============================================ */
+        .departments {
+            background: var(--light);
+        }
+
+        .departments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .department-card {
+            text-align: center;
+            padding: 40px 30px;
+            border-radius: var(--radius);
+            background: white;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .department-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-primary);
+            transform: translateX(-100%);
+            transition: var(--transition);
+        }
+
+        .department-card:hover::before {
+            transform: translateX(0);
+        }
+
+        .department-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .department-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 32px;
+            transition: var(--transition);
+            position: relative;
+            z-index: 1;
+        }
+
+        .department-card:hover .department-icon {
+            transform: scale(1.1) rotate(-10deg);
+        }
+
+        .department-card h3 {
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .department-card p {
+            color: var(--gray);
+            margin-bottom: 25px;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ============================================
+           CONTACT SECTION
+           ============================================ */
+        .contact {
+            background: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .contact-card {
+            text-align: center;
+            padding: 30px;
+            border-radius: var(--radius);
+            background: white;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--gray-light);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .contact-card h3 {
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .contact-card p {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        footer {
+            background: var(--gradient-dark);
+            color: white;
+            padding: 80px 0 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, rgba(37, 99, 235, 0) 70%);
+            top: -150px;
+            right: -150px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 25px;
+            color: var(--secondary);
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            display: inline-block;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            gap: 10px;
+        }
+
+        .contact-item i {
+            color: var(--secondary);
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px) rotate(5deg);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 14px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ============================================
+           USER MENU
+           ============================================ */
+        .user-menu-item {
+            width: 100%;
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--dark);
+            transition: var(--transition);
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 8px;
+            margin: 2px 0;
+        }
+        
+        .user-menu-item:hover {
+            background: var(--light);
+            color: var(--primary);
+        }
+        
+        .user-menu-item i {
+            width: 20px;
+            text-align: center;
+        }
+
+        /* ============================================
+           NOTIFICATIONS
+           ============================================ */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: var(--radius);
+            color: white;
+            font-weight: 500;
+            z-index: 9999;
+            max-width: 400px;
+            box-shadow: var(--shadow-lg);
+            animation: slideInRight 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            word-break: break-word;
+            white-space: pre-line;
+        }
+
+        .notification-success {
+            background: var(--success);
+        }
+
+        .notification-error {
+            background: var(--danger);
+        }
+
+        .notification-warning {
+            background: var(--warning);
+        }
+
+        .notification-info {
+            background: var(--info);
+        }
+
+        .notification i {
+            font-size: 20px;
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
+        @media (max-width: 1200px) {
+            .section-title { font-size: 36px; }
+            .hero h1 { font-size: 44px; }
+            .grid-4 { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 992px) {
+            .modal-content {
+                flex-direction: column;
+                max-width: 500px;
+                max-height: 80vh;
+            }
+            
+            .modal-left,
+            .modal-right {
+                padding: 30px;
+            }
+            
+            .modal-left::before,
+            .modal-left::after {
+                display: none;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 120px;
+                left: -100%;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: var(--shadow-lg);
+                transition: var(--transition);
+                gap: 0;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-link {
+                padding: 15px;
+                width: 100%;
+                border-bottom: 1px solid var(--gray-light);
+            }
+            
+            .nav-link:last-child {
+                border-bottom: none;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .grid-4,
+            .grid-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section { padding: 80px 0; }
+            .section-title { font-size: 32px; }
+            .hero { padding: 120px 0 80px; }
+            .hero h1 { font-size: 36px; }
+            .hero p { font-size: 18px; }
+            .hero-buttons { flex-direction: column; align-items: center; }
+            .btn { width: 100%; max-width: 300px; }
+            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+            .form-options { flex-direction: column; align-items: flex-start; gap: 15px; }
+        }
+
+        @media (max-width: 576px) {
+            .section-title { font-size: 28px; }
+            .hero h1 { font-size: 32px; }
+            .hero p { font-size: 16px; }
+            .modal-content { width: 95%; }
+            .modal-left, .modal-right { padding: 25px; }
+            .auth-tab { padding: 12px; font-size: 14px; }
+            .footer-content { grid-template-columns: 1fr; text-align: center; }
+            .contact-item { justify-content: center; }
+            .social-links { justify-content: center; }
+        }
+
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Focus States */
+        :focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* Print Styles */
+        @media print {
+            .top-bar,
+            .main-header,
+            .hero-buttons,
+            .modal,
+            footer,
+            .btn {
+                display: none !important;
+            }
+            
+            body {
+                color: black;
+                background: white;
+                font-size: 12pt;
+            }
+            
+            .section {
+                padding: 40px 0 !important;
+                page-break-inside: avoid;
+            }
+            
+            .card,
+            .service-card,
+            .doctor-card,
+            .testimonial-card {
+                box-shadow: none !important;
+                border: 1px solid #ddd !important;
+                break-inside: avoid;
+            }
+            
+            .section-title {
+                color: black !important;
+                -webkit-text-fill-color: black !important;
+                background: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip to Content -->
+    <a href="#main-content" class="sr-only">Skip to main content</a>
+
+    <!-- Top Bar -->
+    <div class="top-bar" aria-label="Emergency contact and quick links">
+        <div class="container top-bar-content">
+            <div class="emergency-contact">
+                <i class="fas fa-phone-alt" aria-hidden="true"></i>
+                <span>Emergency: 1-800-MED-CARE (24/7)</span>
+            </div>
+            <div class="top-links">
+                <a href="#appointment" aria-label="Book appointment">
+                    <i class="fas fa-calendar-check" aria-hidden="true"></i>
+                    Book Appointment
+                </a>
+                <a href="#" id="openLoginModal" aria-label="Patient login">
+                    <i class="fas fa-user" aria-hidden="true"></i>
+                    Patient Login
+                </a>
+                <a href="#contact" aria-label="Get help">
+                    <i class="fas fa-question-circle" aria-hidden="true"></i>
+                    Help Center
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <a href="#" class="logo" aria-label="MediCare Center homepage">
+                    <div class="logo-icon">M</div>
+                    <div class="logo-text">MediCare<span>Center</span></div>
+                </a>
+
+                <!-- Navigation -->
+                <nav class="main-nav" role="navigation" aria-label="Main navigation">
+                    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    
+                    <ul class="nav-links" id="navLinks">
+                        <li><a href="#home" class="nav-link active" aria-current="page">
+                            <i class="fas fa-home"></i> Home
+                        </a></li>
+                        <li><a href="#services" class="nav-link">
+                            <i class="fas fa-stethoscope"></i> Services
+                        </a></li>
+                        <li><a href="#doctors" class="nav-link">
+                            <i class="fas fa-user-md"></i> Doctors
+                        </a></li>
+                        <li><a href="#departments" class="nav-link">
+                            <i class="fas fa-hospital"></i> Departments
+                        </a></li>
+                        <li><a href="#appointment" class="nav-link">
+                            <i class="fas fa-calendar-plus"></i> Appointment
+                        </a></li>
+                        <li><a href="#testimonials" class="nav-link">
+                            <i class="fas fa-comments"></i> Testimonials
+                        </a></li>
+                        <li><a href="#contact" class="nav-link">
+                            <i class="fas fa-address-book"></i> Contact
+                        </a></li>
+                    </ul>
+                </nav>
+
+                <!-- Auth Button -->
+                <button class="btn btn-primary" id="authBtn" aria-label="Open login modal">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Login / Sign Up
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero" role="main" aria-labelledby="hero-title">
+        <div class="container">
+            <div class="hero-content">
+                <h1 id="hero-title" class="animate__animated animate__fadeInUp">Your Health is Our Priority</h1>
+                <p class="animate__animated animate__fadeInUp animate__delay-1s">MediCare Center provides comprehensive healthcare services with state-of-the-art facilities and expert medical professionals. We are committed to delivering exceptional patient care with compassion and excellence.</p>
+                <div class="hero-buttons animate__animated animate__fadeInUp animate__delay-2s">
+                    <a href="#appointment" class="btn btn-primary" aria-label="Book appointment now">
+                        <i class="fas fa-calendar-check"></i> Book Appointment Now
+                    </a>
+                    <button class="btn btn-secondary" id="heroLoginBtn" aria-label="Open patient portal">
+                        <i class="fas fa-user"></i> Patient Portal
+                    </button>
+                    <a href="#services" class="btn btn-outline" aria-label="View our services">
+                        <i class="fas fa-stethoscope"></i> Our Services
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section services" aria-labelledby="services-title">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" id="services-title">Our Medical Services</h2>
+                <p class="section-subtitle">Comprehensive healthcare services for all your medical needs</p>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Cardiology Service -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Cardiology</h3>
+                    <p>Advanced cardiac care with modern diagnostic equipment and expert cardiologists for heart-related conditions.</p>
+                    <a href="#appointment" class="btn btn-primary">Book Consultation</a>
+                </div>
+                
+                <!-- Neurology Service -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Neurology</h3>
+                    <p>Specialized neurological care for brain and nervous system disorders with advanced treatment options.</p>
+                    <a href="#appointment" class="btn btn-primary">Book Consultation</a>
+                </div>
+                
+                <!-- Pediatrics Service -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-baby"></i>
+                    </div>
+                    <h3>Pediatrics</h3>
+                    <p>Comprehensive healthcare for infants, children, and adolescents with child-friendly facilities.</p>
+                    <a href="#appointment" class="btn btn-primary">Book Consultation</a>
+                </div>
+                
+                <!-- Orthopedics Service -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-bone"></i>
+                    </div>
+                    <h3>Orthopedics</h3>
+                    <p>Complete bone, joint, and muscle care including surgical interventions and rehabilitation.</p>
+                    <a href="#appointment" class="btn btn-primary">Book Consultation</a>
+                </div>
+                
+                <!-- Radiology Service -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-x-ray"></i>
+                    </div>
+                    <h3>Radiology</h3>
+                    <p>Advanced imaging services including MRI, CT Scan, X-Ray, and ultrasound with expert radiologists.</p>
+                    <a href="#appointment" class="btn btn-primary">Book Consultation</a>
+                </div>
+                
+                <!-- Dentistry Service -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tooth"></i>
+                    </div>
+                    <h3>Dentistry</h3>
+                    <p>Complete dental care services for all age groups with modern equipment and pain-free procedures.</p>
+                    <a href="#appointment" class="btn btn-primary">Book Consultation</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section features" aria-labelledby="features-title">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" id="features-title">Why Choose MediCare Center</h2>
+                <p class="section-subtitle">Experience healthcare that puts you first with our patient-centered approach</p>
+            </div>
+            
+            <div class="grid grid-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>24/7 Emergency</h3>
+                    <p>Round-the-clock emergency services with immediate response and advanced trauma care.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3>Expert Doctors</h3>
+                    <p>Highly qualified and experienced medical professionals with international certifications.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                    <h3>Modern Facilities</h3>
+                    <p>State-of-the-art medical equipment and technology for accurate diagnosis and treatment.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3>Patient-Centric</h3>
+                    <p>Compassionate care focused on your comfort, recovery, and overall well-being.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Doctors Section -->
+    <section id="doctors" class="section doctors" aria-labelledby="doctors-title">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" id="doctors-title">Our Expert Doctors</h2>
+                <p class="section-subtitle">Meet our team of highly qualified and experienced medical professionals</p>
+            </div>
+            
+            <div class="doctors-grid">
+                <!-- Dr. Sarah Johnson -->
+                <div class="doctor-card">
+                    <div class="doctor-img">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Dr. Sarah Johnson - Cardiologist" loading="lazy">
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Sarah Johnson</h3>
+                        <span class="doctor-specialty">Cardiologist</span>
+                        <div class="doctor-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.7 (128 reviews)</span>
+                        </div>
+                        <p>15+ years experience in cardiac care and preventive cardiology. Specializes in interventional cardiology.</p>
+                    </div>
+                </div>
+                
+                <!-- Dr. Michael Chen -->
+                <div class="doctor-card">
+                    <div class="doctor-img">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Dr. Michael Chen - Neurologist" loading="lazy">
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Michael Chen</h3>
+                        <span class="doctor-specialty">Neurologist</span>
+                        <div class="doctor-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>5.0 (96 reviews)</span>
+                        </div>
+                        <p>Expert in neurological disorders, epilepsy, and headache management. Fellowship trained at Johns Hopkins.</p>
+                    </div>
+                </div>
+                
+                <!-- Dr. Emma Wilson -->
+                <div class="doctor-card">
+                    <div class="doctor-img">
+                        <img src="https://images.unsplash.com/photo-1591604021695-0cbe32b56a5c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Dr. Emma Wilson - Pediatrician" loading="lazy">
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Emma Wilson</h3>
+                        <span class="doctor-specialty">Pediatrician</span>
+                        <div class="doctor-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>4.9 (203 reviews)</span>
+                        </div>
+                        <p>Specialized in child healthcare and developmental pediatrics. Board certified with 12 years experience.</p>
+                    </div>
+                </div>
+                
+                <!-- Dr. Robert Davis -->
+                <div class="doctor-card">
+                    <div class="doctor-img">
+                        <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Dr. Robert Davis - Orthopedic Surgeon" loading="lazy">
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Robert Davis</h3>
+                        <span class="doctor-specialty">Orthopedic Surgeon</span>
+                        <div class="doctor-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.6 (87 reviews)</span>
+                        </div>
+                        <p>Joint replacement specialist and sports injury expert. Performs minimally invasive surgeries.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Appointment Section -->
+    <section id="appointment" class="section appointment" aria-labelledby="appointment-title">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" id="appointment-title">Book an Appointment</h2>
+                <p class="section-subtitle">Schedule your visit with our medical experts</p>
+            </div>
+            
+            <div class="grid grid-2">
+                <!-- Appointment Form -->
+                <div class="appointment-form">
+                    <h3>Book Your Appointment</h3>
+                    <form id="appointmentForm" novalidate>
+                        <div class="form-group">
+                            <label for="patientName" class="form-label">Full Name *</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="patientName" name="patientName" placeholder="Enter your full name" required minlength="2" maxlength="100">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="patientEmail" class="form-label">Email Address *</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="patientEmail" name="patientEmail" placeholder="Enter your email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="patientPhone" class="form-label">Phone Number *</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-phone"></i>
+                                <input type="tel" id="patientPhone" name="patientPhone" placeholder="Enter your phone number" required pattern="[0-9+\-\s()]{10,}">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="appointmentDate" class="form-label">Preferred Date *</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-calendar"></i>
+                                <input type="date" id="appointmentDate" name="appointmentDate" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="department" class="form-label">Department *</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-hospital"></i>
+                                <select id="department" name="department" required>
+                                    <option value="">Select Department</option>
+                                    <option value="cardiology">Cardiology</option>
+                                    <option value="neurology">Neurology</option>
+                                    <option value="pediatrics">Pediatrics</option>
+                                    <option value="orthopedics">Orthopedics</option>
+                                    <option value="dentistry">Dentistry</option>
+                                    <option value="radiology">Radiology</option>
+                                    <option value="emergency">Emergency Care</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="doctor" class="form-label">Preferred Doctor</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-user-md"></i>
+                                <select id="doctor" name="doctor">
+                                    <option value="">Select Doctor (Optional)</option>
+                                    <option value="dr-sarah">Dr. Sarah Johnson (Cardiology)</option>
+                                    <option value="dr-michael">Dr. Michael Chen (Neurology)</option>
+                                    <option value="dr-emma">Dr. Emma Wilson (Pediatrics)</option>
+                                    <option value="dr-robert">Dr. Robert Davis (Orthopedics)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="symptoms" class="form-label">Symptoms / Reason for Visit</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-file-medical"></i>
+                                <textarea id="symptoms" name="symptoms" rows="4" placeholder="Describe your symptoms or reason for appointment (Optional)" maxlength="500"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="terms" name="terms" required>
+                                <label for="terms">I agree to the <a href="#" style="color: var(--primary);">Terms & Conditions</a> and privacy policy *</label>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-calendar-check"></i> Book Appointment Now
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Why Choose Us -->
+                <div>
+                    <div class="card">
+                        <h3>Why Choose MediCare Center?</h3>
+                        <p style="margin-bottom: 20px; color: var(--gray);">We provide exceptional healthcare services with patient-centered approach.</p>
+                        
+                        <ul style="list-style: none; margin-bottom: 30px;">
+                            <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px;">
+                                <i class="fas fa-check-circle" style="color: var(--success); margin-top: 3px;"></i>
+                                <span>24/7 Emergency Services with immediate response</span>
+                            </li>
+                            <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px;">
+                                <i class="fas fa-check-circle" style="color: var(--success); margin-top: 3px;"></i>
+                                <span>Advanced Medical Equipment and Technology</span>
+                            </li>
+                            <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px;">
+                                <i class="fas fa-check-circle" style="color: var(--success); margin-top: 3px;"></i>
+                                <span>Experienced Medical Professionals and Specialists</span>
+                            </li>
+                            <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px;">
+                                <i class="fas fa-check-circle" style="color: var(--success); margin-top: 3px;"></i>
+                                <span>Patient-Centric Care Approach with Compassion</span>
+                            </li>
+                            <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px;">
+                                <i class="fas fa-check-circle" style="color: var(--success); margin-top: 3px;"></i>
+                                <span>Insurance & Payment Flexibility with Transparency</span>
+                            </li>
+                        </ul>
+                        
+                        <!-- Emergency Contact Card -->
+                        <div style="background: linear-gradient(135deg, #fef3c7, #fef3c7); padding: 20px; border-radius: var(--radius); border-left: 4px solid var(--warning);">
+                            <h4 style="color: var(--warning); margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
+                                <i class="fas fa-phone-alt"></i> Emergency Contact
+                            </h4>
+                            <p style="margin-bottom: 10px; color: var(--gray-dark);">For immediate medical assistance:</p>
+                            <div style="display: flex; align-items: center; margin-bottom: 10px; gap: 10px;">
+                                <i class="fas fa-phone" style="color: var(--warning);"></i>
+                                <span style="font-weight: 600; font-size: 18px; color: var(--dark);">1-800-MED-CARE</span>
+                            </div>
+                            <p style="font-size: 14px; color: var(--gray);">Available 24 hours, 7 days a week</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Departments Section -->
+    <section id="departments" class="section departments" aria-labelledby="departments-title">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" id="departments-title">Our Medical Departments</h2>
+                <p class="section-subtitle">Specialized departments offering comprehensive healthcare services</p>
+            </div>
+            
+            <div class="departments-grid">
+                <!-- Cardiology Department -->
+                <div class="department-card">
+                    <div class="department-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Cardiology</h3>
+                    <p>Complete cardiac care including diagnostics, treatment, rehabilitation, and preventive cardiology services.</p>
+                    <a href="#appointment" class="btn btn-primary">Book Appointment</a>
+                </div>
+                
+                <!-- Neurology Department -->
+                <div class="department-card">
+                    <div class="department-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Neurology</h3>
+                    <p>Advanced neurological care for conditions affecting the brain, spinal cord, and nervous system.</p>
+                    <a href="#appointment" class="btn btn-primary">Book Appointment</a>
+                </div>
+                
+                <!-- Pulmonology Department -->
+                <div class="department-card">
+                    <div class="department-icon">
+                        <i class="fas fa-lungs"></i>
+                    </div>
+                    <h3>Pulmonology</h3>
+                    <p>Specialized care for respiratory diseases, breathing disorders, and lung health management.</p>
+                    <a href="#appointment" class="btn btn-primary">Book Appointment</a>
+                </div>
+                
+                <!-- Orthopedics Department -->
+                <div class="department-card">
+                    <div class="department-icon">
+                        <i class="fas fa-bone"></i>
+                    </div>
+                    <h3>Orthopedics</h3>
+                    <p>Comprehensive bone, joint, and muscle care including surgical interventions and rehabilitation.</p>
+                    <a href="#appointment" class="btn btn-primary">Book Appointment</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section testimonials" aria-labelledby="testimonials-title">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" id="testimonials-title">Patient Testimonials</h2>
+                <p class="section-subtitle">What our patients say about their experience at MediCare Center</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "The care I received at MediCare Center was exceptional. Dr. Johnson took the time to explain everything clearly and the staff was incredibly supportive throughout my treatment. Highly recommended!"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
+                                 alt="Jessica Miller" loading="lazy">
+                        </div>
+                        <div class="author-info">
+                            <h4>Jessica Miller</h4>
+                            <p>Cardiology Patient</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "From the moment I walked in, I felt cared for. The neurology department helped me manage my condition effectively. The facilities are state-of-the-art and the doctors are truly experts in their field."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
+                                 alt="David Chen" loading="lazy">
+                        </div>
+                        <div class="author-info">
+                            <h4>David Chen</h4>
+                            <p>Neurology Patient</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "As a parent, finding the right pediatrician was crucial. Dr. Wilson has been amazing with my children. The pediatric department is child-friendly and the staff is so patient and kind. Thank you!"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
+                                 alt="Sarah Johnson" loading="lazy">
+                        </div>
+                        <div class="author-info">
+                            <h4>Sarah Johnson</h4>
+                            <p>Parent of Pediatric Patient</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login/Signup Modal -->
+    <div class="modal" id="loginModal" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal" aria-label="Close modal">&times;</button>
+            
+            <!-- Left Side - Information -->
+            <div class="modal-left">
+                <div class="logo" style="color: white; margin-bottom: 30px;">
+                    <div class="logo-icon">M</div>
+                    <div class="logo-text">MediCare Center</div>
+                </div>
+                
+                <h2 id="modal-title" style="font-size: 28px; margin-bottom: 20px;">Secure Patient Portal</h2>
+                <p style="margin-bottom: 30px; opacity: 0.9;">Access your medical records, book appointments, and communicate with healthcare providers securely. Your health information is protected with enterprise-grade security.</p>
+                
+                <ul class="modal-features" style="list-style: none;">
+                    <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 12px;">
+                        <i class="fas fa-shield-alt" style="background: rgba(255, 255, 255, 0.2); width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"></i>
+                        <span>HIPAA Compliant Security</span>
+                    </li>
+                    <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 12px;">
+                        <i class="fas fa-file-medical-alt" style="background: rgba(255, 255, 255, 0.2); width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"></i>
+                        <span>Access Medical Records 24/7</span>
+                    </li>
+                    <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 12px;">
+                        <i class="fas fa-calendar-check" style="background: rgba(255, 255, 255, 0.2); width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"></i>
+                        <span>Book & Manage Appointments</span>
+                    </li>
+                    <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 12px;">
+                        <i class="fas fa-comments-medical" style="background: rgba(255, 255, 255, 0.2); width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"></i>
+                        <span>Secure Messaging with Doctors</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Right Side - Forms -->
+            <div class="modal-right">
+                <!-- Tabs -->
+                <div class="auth-tabs">
+                    <button class="auth-tab active" id="authLoginTab" aria-controls="authLoginForm" aria-selected="true">Sign In</button>
+                    <button class="auth-tab" id="authSignupTab" aria-controls="authSignupForm" aria-selected="false">Sign Up</button>
+                    <div class="auth-tab-slider" id="authTabSlider"></div>
+                </div>
+
+                <!-- Login Form -->
+                <form class="auth-form active" id="authLoginForm" aria-labelledby="authLoginTab">
+                    <div class="form-group">
+                        <label for="authLoginEmail" class="form-label">Email Address *</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" 
+                                   id="authLoginEmail" 
+                                   name="authLoginEmail" 
+                                   placeholder="username@hotmail.com" 
+                                   required
+                                   pattern="[a-z0-9._%+-]+@hotmail\.com$"
+                                   title="Please enter a valid @hotmail.com email address">
+                        </div>
+                        <div class="validation-message" id="authLoginEmailValidation">
+                            <i class="fas fa-info-circle"></i> Must be a @hotmail.com address
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="authLoginPassword" class="form-label">Password *</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" 
+                                   id="authLoginPassword" 
+                                   name="authLoginPassword" 
+                                   placeholder="Enter your password" 
+                                   required
+                                   minlength="6"
+                                   maxlength="50">
+                        </div>
+                        <div class="validation-message" id="authLoginPasswordValidation"></div>
+                    </div>
+                    
+                    <div class="form-options">
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="authRememberMe" name="authRememberMe">
+                            <label for="authRememberMe">Remember me</label>
+                        </div>
+                        <a href="#" class="forgot-password" id="authForgotPassword">Forgot Password?</a>
+                    </div>
+                    
+                    <button type="submit" class="auth-submit-btn" id="authLoginBtn">
+                        <span>Sign In</span>
+                    </button>
+                    
+                    <div class="divider">
+                        <span>Or continue with</span>
+                    </div>
+                    
+                    <button type="button" class="btn btn-google" id="authGoogleLoginBtn">
+                        <i class="fab fa-google"></i>
+                        Sign in with Google
+                    </button>
+                    
+                    <div class="form-footer">
+                        <p>Don't have an account? <a href="#" id="authSwitchToSignup">Sign up</a></p>
+                    </div>
+                </form>
+
+                <!-- Signup Form -->
+                <form class="auth-form" id="authSignupForm" aria-labelledby="authSignupTab">
+                    <div class="form-group">
+                        <label for="authSignupName" class="form-label">Full Name *</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-user"></i>
+                            <input type="text" 
+                                   id="authSignupName" 
+                                   name="authSignupName" 
+                                   placeholder="Enter your full name" 
+                                   required
+                                   minlength="2"
+                                   maxlength="100">
+                        </div>
+                        <div class="validation-message" id="authSignupNameValidation"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="authSignupEmail" class="form-label">Email Address *</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" 
+                                   id="authSignupEmail" 
+                                   name="authSignupEmail" 
+                                   placeholder="username@hotmail.com" 
+                                   required
+                                   pattern="[a-z0-9._%+-]+@hotmail\.com$"
+                                   title="Please enter a valid @hotmail.com email address">
+                        </div>
+                        <div class="validation-message" id="authSignupEmailValidation">
+                            <i class="fas fa-info-circle"></i> Must be a @hotmail.com address
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="authSignupPhone" class="form-label">Phone Number *</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-phone"></i>
+                            <input type="tel" 
+                                   id="authSignupPhone" 
+                                   name="authSignupPhone" 
+                                   placeholder="+1 (123) 456-7890" 
+                                   required
+                                   pattern="[0-9+\-\s()]{10,}">
+                        </div>
+                        <div class="validation-message" id="authSignupPhoneValidation"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="authSignupPassword" class="form-label">Password *</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" 
+                                   id="authSignupPassword" 
+                                   name="authSignupPassword" 
+                                   placeholder="Create a strong password" 
+                                   required
+                                   minlength="6"
+                                   maxlength="50">
+                        </div>
+                        
+                        <div class="password-requirements">
+                            <p>Password Requirements:</p>
+                            <ul class="requirements-list">
+                                <li id="authReqLength">
+                                    <i class="fas fa-circle"></i>
+                                    6-50 characters
+                                </li>
+                                <li id="authReqUppercase">
+                                    <i class="fas fa-circle"></i>
+                                    At least one uppercase letter
+                                </li>
+                                <li id="authReqNumber">
+                                    <i class="fas fa-circle"></i>
+                                    At least one number
+                                </li>
+                                <li id="authReqSpecial">
+                                    <i class="fas fa-circle"></i>
+                                    At least one special character
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="authSignupConfirmPassword" class="form-label">Confirm Password *</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" 
+                                   id="authSignupConfirmPassword" 
+                                   name="authSignupConfirmPassword" 
+                                   placeholder="Confirm your password" 
+                                   required
+                                   minlength="6"
+                                   maxlength="50">
+                        </div>
+                        <div class="validation-message" id="authSignupConfirmPasswordValidation"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="authSignupGender" class="form-label">Gender *</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-venus-mars"></i>
+                            <select id="authSignupGender" name="authSignupGender" required>
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                                <option value="prefer-not-to-say">Prefer not to say</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-options">
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="authAcceptTerms" name="authAcceptTerms" required>
+                            <label for="authAcceptTerms">I accept the <a href="#" style="color: var(--primary);">Terms & Conditions</a> and privacy policy *</label>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="auth-submit-btn" id="authSignupBtn">
+                        <span>Create Account</span>
+                    </button>
+                    
+                    <div class="divider">
+                        <span>Or sign up with</span>
+                    </div>
+                    
+                    <button type="button" class="btn btn-google" id="authGoogleSignupBtn">
+                        <i class="fab fa-google"></i>
+                        Sign up with Google
+                    </button>
+                    
+                    <div class="form-footer">
+                        <p>Already have an account? <a href="#" id="authSwitchToLogin">Sign in</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact" aria-labelledby="contact-title">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" id="contact-title">Contact Us</h2>
+                <p class="section-subtitle">Get in touch with our healthcare team</p>
+            </div>
+            
+            <div class="grid grid-2">
+                <!-- Contact Information -->
+                <div>
+                    <div class="contact-grid">
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <h3>Our Location</h3>
+                            <p>123 Healthcare Avenue<br>Medical District, City 12345<br>United States</p>
+                        </div>
+                        
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <h3>Phone Number</h3>
+                            <p>General: (123) 456-7890<br>Emergency: 1-800-MED-CARE<br>Fax: (123) 456-7891</p>
+                        </div>
+                        
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h3>Email Address</h3>
+                            <p>info@medicarecenter.com<br>appointments@medicarecenter.com<br>support@medicarecenter.com</p>
+                        </div>
+                        
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h3>Working Hours</h3>
+                            <p>Mon-Fri: 8:00 AM - 8:00 PM<br>Sat-Sun: 9:00 AM - 6:00 PM<br>Emergency: 24/7</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Map Placeholder -->
+                    <div class="card" style="margin-top: 30px; padding: 0; overflow: hidden;">
+                        <div style="height: 200px; background: var(--light); display: flex; align-items: center; justify-content: center; color: var(--gray);">
+                            <i class="fas fa-map-marked-alt" style="font-size: 48px;"></i>
+                        </div>
+                        <div style="padding: 20px;">
+                            <h3>Visit Our Campus</h3>
+                            <p style="color: var(--gray); margin-top: 10px;">Our hospital campus is easily accessible with ample parking and wheelchair access.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="appointment-form">
+                    <h3>Send Us a Message</h3>
+                    <form id="contactForm" novalidate>
+                        <div class="form-group">
+                            <label for="contactName" class="form-label">Your Name *</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-user"></i>
+                                <input type="text" 
+                                       id="contactName" 
+                                       name="contactName" 
+                                       placeholder="Enter your name" 
+                                       required
+                                       minlength="2"
+                                       maxlength="100">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactEmail" class="form-label">Email Address *</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" 
+                                       id="contactEmail" 
+                                       name="contactEmail" 
+                                       placeholder="Enter your email" 
+                                       required
+                                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactSubject" class="form-label">Subject *</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-tag"></i>
+                                <input type="text" 
+                                       id="contactSubject" 
+                                       name="contactSubject" 
+                                       placeholder="Enter subject" 
+                                       required
+                                       minlength="5"
+                                       maxlength="200">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactMessage" class="form-label">Message *</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-comment"></i>
+                                <textarea id="contactMessage" 
+                                          name="contactMessage" 
+                                          rows="5" 
+                                          placeholder="Type your message here" 
+                                          required
+                                          minlength="10"
+                                          maxlength="1000"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="contactTerms" name="contactTerms" required>
+                                <label for="contactTerms">I agree to the privacy policy and consent to being contacted *</label>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Company Information -->
+                <div class="footer-column">
+                    <h3>MediCare Center</h3>
+                    <p style="margin-bottom: 20px; color: #cbd5e1;">Providing exceptional healthcare services with compassion and excellence. Your health is our priority.</p>
+                    
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Healthcare Avenue, Medical District</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>1-800-MED-CARE</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@medicarecenter.com</span>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Our Services</a></li>
+                        <li><a href="#doctors">Our Doctors</a></li>
+                        <li><a href="#departments">Departments</a></li>
+                        <li><a href="#appointment">Book Appointment</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Services Links -->
+                <div class="footer-column">
+                    <h3>Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#services">Cardiology</a></li>
+                        <li><a href="#services">Neurology</a></li>
+                        <li><a href="#services">Pediatrics</a></li>
+                        <li><a href="#services">Orthopedics</a></li>
+                        <li><a href="#services">Dentistry</a></li>
+                        <li><a href="#services">Emergency Care</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Patient Resources -->
+                <div class="footer-column">
+                    <h3>Patient Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" id="footerLogin">Patient Portal</a></li>
+                        <li><a href="#">Medical Records</a></li>
+                        <li><a href="#">Bill Payment</a></li>
+                        <li><a href="#">Insurance Information</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="copyright">
+                <p>&copy; 2023 MediCare Center. All Rights Reserved. | This website is part of a Verification & Validation Project</p>
+                <p style="margin-top: 10px; font-size: 12px; color: #94a3b8;">Disclaimer: This is a demonstration website for educational purposes only. All medical information is fictional.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // ============================================
+        // INITIALIZATION
+        // ============================================
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('MediCare Center - Healthcare System Initialized');
+            
+            // Initialize all systems
+            initNavigation();
+            initModal();
+            initForms();
+            initUserSystem();
+            initAnimations();
+            initEventListeners();
+        });
+
+        // ============================================
+        // NAVIGATION SYSTEM
+        // ============================================
+        function initNavigation() {
+            const header = document.querySelector('.main-header');
+            const menuToggle = document.getElementById('menuToggle');
+            const navLinks = document.getElementById('navLinks');
+            
+            // Header scroll effect
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+                
+                // Update active nav link
+                updateActiveNavLink();
+            });
+            
+            // Mobile menu toggle
+            if (menuToggle && navLinks) {
+                menuToggle.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                    const isExpanded = navLinks.classList.contains('active');
+                    menuToggle.setAttribute('aria-expanded', isExpanded);
+                    menuToggle.innerHTML = isExpanded 
+                        ? '<i class="fas fa-times"></i>' 
+                        : '<i class="fas fa-bars"></i>';
+                });
+                
+                // Close mobile menu when clicking on a link
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navLinks.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    });
+                });
+            }
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    
+                    const target = document.querySelector(href);
+                    if (target) {
+                        e.preventDefault();
+                        const headerHeight = document.querySelector('.main-header').offsetHeight;
+                        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Update URL without page jump
+                        history.pushState(null, null, href);
+                    }
+                });
+            });
+        }
+        
+        function updateActiveNavLink() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const scrollPosition = window.scrollY + 100;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }
+
+        // ============================================
+        // MODAL SYSTEM
+        // ============================================
+        function initModal() {
+            const modal = document.getElementById('loginModal');
+            const openModalButtons = [
+                document.getElementById('openLoginModal'),
+                document.getElementById('authBtn'),
+                document.getElementById('heroLoginBtn'),
+                document.getElementById('footerLogin')
+            ];
+            const closeModalBtn = document.getElementById('closeModal');
+            
+            // Open modal from various buttons
+            openModalButtons.forEach(btn => {
+                if (btn) {
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        openModal();
+                    });
+                }
+            });
+            
+            // Close modal with close button
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', closeModal);
+            }
+            
+            // Close modal on outside click
+            if (modal) {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        closeModal();
+                    }
+                });
+            }
+            
+            // Close modal with Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+            
+            // Initialize auth tabs
+            initAuthTabs();
+        }
+        
+        function openModal() {
+            const modal = document.getElementById('loginModal');
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                modal.setAttribute('aria-hidden', 'false');
+                document.getElementById('authLoginEmail')?.focus();
+            }
+        }
+        
+        function closeModal() {
+            const modal = document.getElementById('loginModal');
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                modal.setAttribute('aria-hidden', 'true');
+                // Reset forms
+                document.getElementById('authLoginForm')?.reset();
+                document.getElementById('authSignupForm')?.reset();
+                resetPasswordRequirements();
+            }
+        }
+        
+        function initAuthTabs() {
+            const loginTab = document.getElementById('authLoginTab');
+            const signupTab = document.getElementById('authSignupTab');
+            const switchToSignup = document.getElementById('authSwitchToSignup');
+            const switchToLogin = document.getElementById('authSwitchToLogin');
+            
+            if (loginTab) loginTab.addEventListener('click', () => switchAuthTab('login'));
+            if (signupTab) signupTab.addEventListener('click', () => switchAuthTab('signup'));
+            if (switchToSignup) switchToSignup.addEventListener('click', (e) => {
+                e.preventDefault();
+                switchAuthTab('signup');
+            });
+            if (switchToLogin) switchToLogin.addEventListener('click', (e) => {
+                e.preventDefault();
+                switchAuthTab('login');
+            });
+        }
+        
+        function switchAuthTab(tab) {
+            const loginTab = document.getElementById('authLoginTab');
+            const signupTab = document.getElementById('authSignupTab');
+            const loginForm = document.getElementById('authLoginForm');
+            const signupForm = document.getElementById('authSignupForm');
+            const tabSlider = document.getElementById('authTabSlider');
+            
+            if (tab === 'login') {
+                loginTab.classList.add('active');
+                signupTab.classList.remove('active');
+                loginTab.setAttribute('aria-selected', 'true');
+                signupTab.setAttribute('aria-selected', 'false');
+                loginForm.classList.add('active');
+                signupForm.classList.remove('active');
+                tabSlider.style.transform = 'translateX(0)';
+                document.getElementById('authLoginEmail')?.focus();
+            } else {
+                signupTab.classList.add('active');
+                loginTab.classList.remove('active');
+                signupTab.setAttribute('aria-selected', 'true');
+                loginTab.setAttribute('aria-selected', 'false');
+                signupForm.classList.add('active');
+                loginForm.classList.remove('active');
+                tabSlider.style.transform = 'translateX(100%)';
+                document.getElementById('authSignupName')?.focus();
+            }
+        }
+
+        // ============================================
+        // FORM SYSTEM
+        // ============================================
+        function initForms() {
+            // Set minimum date for appointment
+            const dateInput = document.getElementById('appointmentDate');
+            if (dateInput) {
+                const today = new Date().toISOString().split('T')[0];
+                dateInput.min = today;
+            }
+            
+            // Initialize form validation
+            initFormValidation();
+            
+            // Initialize password requirements
+            initPasswordRequirements();
+            
+            // Initialize form submissions
+            initFormSubmissions();
+        }
+        
+        function initFormValidation() {
+            // Real-time email validation for @hotmail.com
+            const loginEmail = document.getElementById('authLoginEmail');
+            const signupEmail = document.getElementById('authSignupEmail');
+            
+            if (loginEmail) {
+                loginEmail.addEventListener('input', validateHotmailEmail);
+            }
+            
+            if (signupEmail) {
+                signupEmail.addEventListener('input', validateHotmailEmail);
+            }
+            
+            // Real-time password validation
+            const signupPassword = document.getElementById('authSignupPassword');
+            if (signupPassword) {
+                signupPassword.addEventListener('input', validatePassword);
+            }
+            
+            // Real-time confirm password validation
+            const confirmPassword = document.getElementById('authSignupConfirmPassword');
+            if (confirmPassword) {
+                confirmPassword.addEventListener('input', validateConfirmPassword);
+            }
+        }
+        
+        function validateHotmailEmail(e) {
+            const input = e.target;
+            const email = input.value.trim();
+            const validationMsg = document.getElementById(input.id === 'authLoginEmail' ? 'authLoginEmailValidation' : 'authSignupEmailValidation');
+            
+            if (!validationMsg) return;
+            
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@hotmail\.com$/;
+            
+            if (email === '') {
+                validationMsg.innerHTML = '<i class="fas fa-info-circle"></i> Must be a @hotmail.com address';
+                validationMsg.className = 'validation-message';
+                return false;
+            } else if (emailRegex.test(email)) {
+                validationMsg.innerHTML = '<i class="fas fa-check-circle"></i> Valid @hotmail.com email';
+                validationMsg.className = 'validation-message valid';
+                return true;
+            } else {
+                validationMsg.innerHTML = '<i class="fas fa-times-circle"></i> Must be a @hotmail.com address';
+                validationMsg.className = 'validation-message invalid';
+                return false;
+            }
+        }
+        
+        function initPasswordRequirements() {
+            resetPasswordRequirements();
+        }
+        
+        function resetPasswordRequirements() {
+            const requirements = document.querySelectorAll('.requirements-list li');
+            requirements.forEach(req => {
+                req.className = 'requirement-not-met';
+                const icon = req.querySelector('i');
+                if (icon) {
+                    icon.className = 'fas fa-circle';
+                }
+            });
+        }
+        
+        function validatePassword(e) {
+            const password = e.target.value;
+            const requirements = {
+                length: document.getElementById('authReqLength'),
+                uppercase: document.getElementById('authReqUppercase'),
+                number: document.getElementById('authReqNumber'),
+                special: document.getElementById('authReqSpecial')
+            };
+            
+            // Check each requirement
+            const checks = {
+                length: password.length >= 6 && password.length <= 50,
+                uppercase: /[A-Z]/.test(password),
+                number: /[0-9]/.test(password),
+                special: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)
+            };
+            
+            // Update UI for each requirement
+            Object.keys(checks).forEach(key => {
+                const requirement = requirements[key];
+                if (requirement) {
+                    const icon = requirement.querySelector('i');
+                    if (checks[key]) {
+                        requirement.className = 'requirement-met';
+                        if (icon) {
+                            icon.className = 'fas fa-check-circle';
+                        }
+                    } else {
+                        requirement.className = 'requirement-not-met';
+                        if (icon) {
+                            icon.className = 'fas fa-circle';
+                        }
+                    }
+                }
+            });
+            
+            return Object.values(checks).every(check => check === true);
+        }
+        
+        function validateConfirmPassword() {
+            const password = document.getElementById('authSignupPassword').value;
+            const confirmPassword = document.getElementById('authSignupConfirmPassword').value;
+            const validationMsg = document.getElementById('authSignupConfirmPasswordValidation');
+            
+            if (!validationMsg) return false;
+            
+            if (confirmPassword === '') {
+                validationMsg.innerHTML = '<i class="fas fa-info-circle"></i> Please confirm your password';
+                validationMsg.className = 'validation-message';
+                return false;
+            } else if (password !== confirmPassword) {
+                validationMsg.innerHTML = '<i class="fas fa-times-circle"></i> Passwords do not match';
+                validationMsg.className = 'validation-message invalid';
+                return false;
+            } else {
+                validationMsg.innerHTML = '<i class="fas fa-check-circle"></i> Passwords match';
+                validationMsg.className = 'validation-message valid';
+                return true;
+            }
+        }
+        
+        function initFormSubmissions() {
+            // Login form
+            const loginForm = document.getElementById('authLoginForm');
+            if (loginForm) {
+                loginForm.addEventListener('submit', handleLogin);
+            }
+            
+            // Signup form
+            const signupForm = document.getElementById('authSignupForm');
+            if (signupForm) {
+                signupForm.addEventListener('submit', handleSignup);
+            }
+            
+            // Appointment form
+            const appointmentForm = document.getElementById('appointmentForm');
+            if (appointmentForm) {
+                appointmentForm.addEventListener('submit', handleAppointment);
+            }
+            
+            // Contact form
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', handleContact);
+            }
+            
+            // Google auth buttons
+            const googleLoginBtn = document.getElementById('authGoogleLoginBtn');
+            const googleSignupBtn = document.getElementById('authGoogleSignupBtn');
+            
+            if (googleLoginBtn) {
+                googleLoginBtn.addEventListener('click', handleGoogleAuth);
+            }
+            
+            if (googleSignupBtn) {
+                googleSignupBtn.addEventListener('click', handleGoogleAuth);
+            }
+            
+            // Forgot password
+            const forgotPassword = document.getElementById('authForgotPassword');
+            if (forgotPassword) {
+                forgotPassword.addEventListener('click', handleForgotPassword);
+            }
+        }
+        
+        async function handleLogin(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('authLoginEmail').value.trim();
+            const password = document.getElementById('authLoginPassword').value;
+            
+            // Validate email
+            if (!validateHotmailEmail({ target: document.getElementById('authLoginEmail') })) {
+                showNotification('Please enter a valid @hotmail.com email address', 'error');
+                return;
+            }
+            
+            // Validate password
+            if (password.length < 6) {
+                showNotification('Password must be at least 6 characters', 'error');
+                return;
+            }
+            
+            // Show loading
+            const submitBtn = document.getElementById('authLoginBtn');
+            const originalText = submitBtn.querySelector('span').textContent;
+            submitBtn.querySelector('span').textContent = 'Signing in...';
+            submitBtn.classList.add('btn-loading');
+            submitBtn.disabled = true;
+            
+            // Simulate API call
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            // Check if user exists
+            const users = JSON.parse(localStorage.getItem('medicare_users') || '[]');
+            const user = users.find(u => u.email === email && u.password === password);
+            
+            if (user) {
+                // Update last login
+                user.lastLogin = new Date().toISOString();
+                localStorage.setItem('medicare_current_user', JSON.stringify(user));
+                localStorage.setItem('medicare_users', JSON.stringify(users));
+                
+                showNotification(`Welcome back, ${user.name}!`, 'success');
+                updateUIForLoggedInUser(user);
+                closeModal();
+            } else {
+                showNotification('Invalid email or password. Please try again.', 'error');
+            }
+            
+            // Reset button
+            submitBtn.querySelector('span').textContent = originalText;
+            submitBtn.classList.remove('btn-loading');
+            submitBtn.disabled = false;
+        }
+        
+        async function handleSignup(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('authSignupName').value.trim();
+            const email = document.getElementById('authSignupEmail').value.trim();
+            const phone = document.getElementById('authSignupPhone').value.trim();
+            const password = document.getElementById('authSignupPassword').value;
+            const confirmPassword = document.getElementById('authSignupConfirmPassword').value;
+            const gender = document.getElementById('authSignupGender').value;
+            
+            // Validate all fields
+            if (!name) {
+                showNotification('Please enter your full name', 'error');
+                return;
+            }
+            
+            if (!validateHotmailEmail({ target: document.getElementById('authSignupEmail') })) {
+                showNotification('Please enter a valid @hotmail.com email address', 'error');
+                return;
+            }
+            
+            if (!phone) {
+                showNotification('Please enter your phone number', 'error');
+                return;
+            }
+            
+            if (!validatePassword({ target: document.getElementById('authSignupPassword') })) {
+                showNotification('Please ensure your password meets all requirements', 'error');
+                return;
+            }
+            
+            if (!validateConfirmPassword()) {
+                showNotification('Passwords do not match', 'error');
+                return;
+            }
+            
+            if (!gender) {
+                showNotification('Please select your gender', 'error');
+                return;
+            }
+            
+            // Check if user already exists
+            const users = JSON.parse(localStorage.getItem('medicare_users') || '[]');
+            if (users.some(u => u.email === email)) {
+                showNotification('An account with this email already exists. Please log in instead.', 'error');
+                switchAuthTab('login');
+                return;
+            }
+            
+            // Show loading
+            const submitBtn = document.getElementById('authSignupBtn');
+            const originalText = submitBtn.querySelector('span').textContent;
+            submitBtn.querySelector('span').textContent = 'Creating account...';
+            submitBtn.classList.add('btn-loading');
+            submitBtn.disabled = true;
+            
+            // Simulate API call
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            // Create new user
+            const newUser = {
+                id: Date.now().toString(),
+                name: name,
+                email: email,
+                phone: phone,
+                password: password,
+                gender: gender,
+                createdAt: new Date().toISOString(),
+                lastLogin: new Date().toISOString(),
+                role: 'patient'
+            };
+            
+            // Save user
+            users.push(newUser);
+            localStorage.setItem('medicare_users', JSON.stringify(users));
+            localStorage.setItem('medicare_current_user', JSON.stringify(newUser));
+            
+            showNotification(`Account created successfully! Welcome ${name}!`, 'success');
+            updateUIForLoggedInUser(newUser);
+            closeModal();
+            
+            // Reset button
+            submitBtn.querySelector('span').textContent = originalText;
+            submitBtn.classList.remove('btn-loading');
+            submitBtn.disabled = false;
+        }
+        
+        async function handleAppointment(e) {
+            e.preventDefault();
+            
+            // Check if user is logged in
+            const currentUser = JSON.parse(localStorage.getItem('medicare_current_user'));
+            if (!currentUser) {
+                showNotification('Please log in to book an appointment', 'error');
+                openModal();
+                switchAuthTab('login');
+                return;
+            }
+            
+            // Validate form
+            if (!e.target.checkValidity()) {
+                e.target.reportValidity();
+                return;
+            }
+            
+            // Get form data
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            
+            // Add user information
+            data.userId = currentUser.id;
+            data.userName = currentUser.name;
+            data.userEmail = currentUser.email;
+            data.userPhone = currentUser.phone;
+            data.bookingDate = new Date().toISOString();
+            data.status = 'pending';
+            data.appointmentId = 'APT-' + Date.now().toString().slice(-8);
+            
+            // Show loading
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Booking...';
+            submitBtn.disabled = true;
+            
+            // Simulate API call
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            // Save appointment
+            const appointments = JSON.parse(localStorage.getItem('medicare_appointments') || '[]');
+            appointments.push(data);
+            localStorage.setItem('medicare_appointments', JSON.stringify(appointments));
+            
+            showNotification(`Appointment booked successfully!\n\nYour Appointment ID: ${data.appointmentId}\nWe will contact you shortly to confirm.`, 'success');
+            e.target.reset();
+            
+            // Reset date input
+            const dateInput = document.getElementById('appointmentDate');
+            if (dateInput) {
+                dateInput.min = new Date().toISOString().split('T')[0];
+            }
+            
+            // Reset button
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }
+        
+        async function handleContact(e) {
+            e.preventDefault();
+            
+            // Validate form
+            if (!e.target.checkValidity()) {
+                e.target.reportValidity();
+                return;
+            }
+            
+            // Get form data
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            data.timestamp = new Date().toISOString();
+            
+            // Show loading
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+            
+            // Simulate API call
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            // Save contact message
+            const messages = JSON.parse(localStorage.getItem('medicare_contact_messages') || '[]');
+            messages.push(data);
+            localStorage.setItem('medicare_contact_messages', JSON.stringify(messages));
+            
+            showNotification('Thank you for your message! We will get back to you soon.', 'success');
+            e.target.reset();
+            
+            // Reset button
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }
+        
+        async function handleGoogleAuth() {
+            // Show loading
+            const btn = event.target;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fab fa-google"></i> Connecting to Google...';
+            btn.disabled = true;
+            
+            // Simulate Google auth
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            // Create demo Google user
+            const googleUser = {
+                id: Date.now().toString(),
+                name: 'Google User',
+                email: 'user@gmail.com',
+                phone: '+1234567890',
+                createdAt: new Date().toISOString(),
+                lastLogin: new Date().toISOString(),
+                role: 'patient',
+                provider: 'google'
+            };
+            
+            // Save user
+            const users = JSON.parse(localStorage.getItem('medicare_users') || '[]');
+            users.push(googleUser);
+            localStorage.setItem('medicare_users', JSON.stringify(users));
+            localStorage.setItem('medicare_current_user', JSON.stringify(googleUser));
+            
+            showNotification('Successfully authenticated with Google!', 'success');
+            updateUIForLoggedInUser(googleUser);
+            closeModal();
+            
+            // Reset button
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+        }
+        
+        function handleForgotPassword(e) {
+            e.preventDefault();
+            const email = prompt('Please enter your @hotmail.com email address to reset your password:');
+            
+            if (email && /^[a-zA-Z0-9._%+-]+@hotmail\.com$/.test(email)) {
+                // In a real app, you would send a reset link
+                showNotification(`Password reset link sent to ${email}\nPlease check your email.`, 'success');
+            } else if (email) {
+                showNotification('Please enter a valid @hotmail.com email address', 'error');
+            }
+        }
+
+        // ============================================
+        // USER SYSTEM
+        // ============================================
+        function initUserSystem() {
+            // Load current user
+            const currentUser = JSON.parse(localStorage.getItem('medicare_current_user'));
+            if (currentUser) {
+                updateUIForLoggedInUser(currentUser);
+            }
+            
+            // Create demo users if none exist
+            const users = JSON.parse(localStorage.getItem('medicare_users') || '[]');
+            if (users.length === 0) {
+                const demoUsers = [
+                    {
+                        id: '1',
+                        name: 'John Smith',
+                        email: 'john@hotmail.com',
+                        phone: '+1234567890',
+                        password: 'Password123!',
+                        gender: 'male',
+                        createdAt: new Date().toISOString(),
+                        lastLogin: new Date().toISOString(),
+                        role: 'patient'
+                    },
+                    {
+                        id: '2',
+                        name: 'Sarah Johnson',
+                        email: 'sarah@hotmail.com',
+                        phone: '+0987654321',
+                        password: 'Password123!',
+                        gender: 'female',
+                        createdAt: new Date().toISOString(),
+                        lastLogin: new Date().toISOString(),
+                        role: 'patient'
+                    }
+                ];
+                
+                localStorage.setItem('medicare_users', JSON.stringify(demoUsers));
+                console.log('Demo users created');
+            }
+        }
+        
+        function updateUIForLoggedInUser(user) {
+            // Update auth button
+            const authBtn = document.getElementById('authBtn');
+            if (authBtn) {
+                authBtn.innerHTML = `
+                    <i class="fas fa-user-circle"></i>
+                    ${user.name.split(' ')[0]}
+                    <i class="fas fa-chevron-down" style="font-size: 12px; margin-left: 5px;"></i>
+                `;
+                authBtn.onclick = showUserMenu;
+            }
+            
+            // Update hero login button
+            const heroLoginBtn = document.getElementById('heroLoginBtn');
+            if (heroLoginBtn) {
+                heroLoginBtn.innerHTML = '<i class="fas fa-tachometer-alt"></i> Dashboard';
+                heroLoginBtn.onclick = showDashboard;
+            }
+            
+            // Update patient login link
+            const patientLoginLink = document.getElementById('openLoginModal');
+            if (patientLoginLink) {
+                patientLoginLink.innerHTML = '<i class="fas fa-tachometer-alt"></i> Dashboard';
+                patientLoginLink.onclick = showDashboard;
+            }
+            
+            // Update footer login link
+            const footerLogin = document.getElementById('footerLogin');
+            if (footerLogin) {
+                footerLogin.innerHTML = 'Dashboard';
+                footerLogin.onclick = showDashboard;
+            }
+        }
+        
+        function showUserMenu(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Remove existing menu
+            const existingMenu = document.querySelector('.user-menu');
+            if (existingMenu) {
+                existingMenu.remove();
+                return;
+            }
+            
+            const currentUser = JSON.parse(localStorage.getItem('medicare_current_user'));
+            if (!currentUser) return;
+            
+            // Create user menu
+            const userMenu = document.createElement('div');
+            userMenu.className = 'user-menu';
+            userMenu.style.cssText = `
+                position: absolute;
+                top: 70px;
+                right: 20px;
+                background: white;
+                border-radius: var(--radius);
+                box-shadow: var(--shadow-lg);
+                min-width: 250px;
+                z-index: 1001;
+                overflow: hidden;
+                animation: fadeIn 0.3s ease;
+            `;
+            
+            userMenu.innerHTML = `
+                <div style="padding: 20px; border-bottom: 1px solid var(--gray-light);">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                        <div style="width: 40px; height: 40px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+                            ${currentUser.name.charAt(0).toUpperCase()}
+                        </div>
+                        <div>
+                            <h4 style="margin: 0; color: var(--dark);">${currentUser.name}</h4>
+                            <p style="margin: 0; color: var(--gray); font-size: 14px;">${currentUser.email}</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 10px 0;">
+                    <button class="user-menu-item" data-action="dashboard">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </button>
+                    <button class="user-menu-item" data-action="appointments">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>My Appointments</span>
+                    </button>
+                    <button class="user-menu-item" data-action="medical-records">
+                        <i class="fas fa-file-medical"></i>
+                        <span>Medical Records</span>
+                    </button>
+                    <button class="user-menu-item" data-action="profile">
+                        <i class="fas fa-user-cog"></i>
+                        <span>Profile Settings</span>
+                    </button>
+                    <div style="border-top: 1px solid var(--gray-light); margin: 10px 0;"></div>
+                    <button class="user-menu-item" data-action="logout" style="color: var(--danger);">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(userMenu);
+            
+            // Add event listeners to menu items
+            userMenu.querySelectorAll('.user-menu-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const action = this.getAttribute('data-action');
+                    handleUserMenuAction(action);
+                    userMenu.remove();
+                });
+            });
+            
+            // Close menu when clicking outside
+            setTimeout(() => {
+                document.addEventListener('click', function closeMenu(e) {
+                    if (!userMenu.contains(e.target) && e.target !== document.getElementById('authBtn')) {
+                        userMenu.remove();
+                        document.removeEventListener('click', closeMenu);
+                    }
+                });
+            }, 0);
+        }
+        
+        function handleUserMenuAction(action) {
+            switch(action) {
+                case 'dashboard':
+                    showDashboard();
+                    break;
+                case 'appointments':
+                    showAppointments();
+                    break;
+                case 'medical-records':
+                    showMedicalRecords();
+                    break;
+                case 'profile':
+                    showProfileSettings();
+                    break;
+                case 'logout':
+                    handleLogout();
+                    break;
+            }
+        }
+        
+        function showDashboard() {
+            showNotification('Patient Dashboard - This would show comprehensive health data, upcoming appointments, and quick actions in a complete implementation.', 'info');
+        }
+        
+        function showAppointments() {
+            const currentUser = JSON.parse(localStorage.getItem('medicare_current_user'));
+            if (!currentUser) return;
+            
+            const appointments = JSON.parse(localStorage.getItem('medicare_appointments') || '[]');
+            const userAppointments = appointments.filter(apt => apt.userId === currentUser.id);
+            
+            if (userAppointments.length === 0) {
+                showNotification('You have no appointments scheduled. Book your first appointment now!', 'info');
+            } else {
+                const appointmentList = userAppointments.map(apt => `
+                    • ${apt.department} - ${new Date(apt.appointmentDate).toLocaleDateString()} (${apt.status})
+                `).join('\n');
+                
+                showNotification(`Your Appointments:\n\n${appointmentList}\n\nView details in the patient portal.`, 'info');
+            }
+        }
+        
+        function showMedicalRecords() {
+            showNotification('Medical Records Portal - This would show lab results, prescriptions, vaccination history, and medical reports in a complete implementation.', 'info');
+        }
+        
+        function showProfileSettings() {
+            showNotification('Profile Settings - This would allow you to update personal information, contact details, and preferences in a complete implementation.', 'info');
+        }
+        
+        function handleLogout() {
+            if (confirm('Are you sure you want to log out?')) {
+                localStorage.removeItem('medicare_current_user');
+                showNotification('You have been logged out successfully.', 'success');
+                
+                // Reset UI
+                const authBtn = document.getElementById('authBtn');
+                if (authBtn) {
+                    authBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login / Sign Up';
+                    authBtn.onclick = openModal;
+                }
+                
+                const heroLoginBtn = document.getElementById('heroLoginBtn');
+                if (heroLoginBtn) {
+                    heroLoginBtn.innerHTML = '<i class="fas fa-user"></i> Patient Portal';
+                    heroLoginBtn.onclick = openModal;
+                }
+                
+                const patientLoginLink = document.getElementById('openLoginModal');
+                if (patientLoginLink) {
+                    patientLoginLink.innerHTML = '<i class="fas fa-user"></i> Patient Login';
+                    patientLoginLink.onclick = openModal;
+                }
+                
+                const footerLogin = document.getElementById('footerLogin');
+                if (footerLogin) {
+                    footerLogin.innerHTML = 'Patient Portal';
+                    footerLogin.onclick = openModal;
+                }
+            }
+        }
+
+        // ============================================
+        // ANIMATION SYSTEM
+        // ============================================
+        function initAnimations() {
+            // Intersection Observer for scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe elements for animation
+            document.querySelectorAll('.service-card, .feature-card, .doctor-card, .department-card, .testimonial-card').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // ============================================
+        // NOTIFICATION SYSTEM
+        // ============================================
+        function showNotification(message, type = 'info') {
+            // Remove existing notification
+            const existing = document.querySelector('.notification');
+            if (existing) existing.remove();
+            
+            // Create notification
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 15px 20px;
+                border-radius: var(--radius);
+                color: white;
+                font-weight: 500;
+                z-index: 9999;
+                max-width: 400px;
+                box-shadow: var(--shadow-lg);
+                animation: slideInRight 0.3s ease;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                word-break: break-word;
+                white-space: pre-line;
+            `;
+            
+            // Add icon
+            const icons = {
+                success: 'fa-check-circle',
+                error: 'fa-times-circle',
+                warning: 'fa-exclamation-triangle',
+                info: 'fa-info-circle'
+            };
+            
+            notification.innerHTML = `
+                <i class="fas ${icons[type] || icons.info}"></i>
+                <span>${message}</span>
+                <button style="margin-left: 10px; background: none; border: none; color: white; cursor: pointer; opacity: 0.8; transition: var(--transition);">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Add close button functionality
+            const closeBtn = notification.querySelector('button');
+            closeBtn.addEventListener('click', () => {
+                notification.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            });
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.style.animation = 'slideOutRight 0.3s ease';
+                    setTimeout(() => notification.remove(), 300);
+                }
+            }, 5000);
+        }
+
+        // ============================================
+        // EVENT LISTENERS
+        // ============================================
+        function initEventListeners() {
+            // Add focus styles for accessibility
+            document.querySelectorAll('button, a, input, select, textarea').forEach(element => {
+                element.addEventListener('focus', function() {
+                    this.style.outline = `2px solid ${getComputedStyle(document.documentElement).getPropertyValue('--primary')}`;
+                    this.style.outlineOffset = '2px';
+                });
+                
+                element.addEventListener('blur', function() {
+                    this.style.outline = 'none';
+                });
+            });
+            
+            // Add hover effects for cards
+            document.querySelectorAll('.service-card, .doctor-card, .department-card, .testimonial-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        }
+
+        // ============================================
+        // UTILITY FUNCTIONS
+        // ============================================
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        console.log('Healthcare System Initialization Complete');
+    </script>
+</body>
+</html>
